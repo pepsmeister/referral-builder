@@ -12,7 +12,7 @@ export const fetchReferrals = async () => {
 
 export const createReferral = async (payload: CreateReferralFormProps) => {
     try {
-        fetch('http://localhost:3000/referrals', {
+        const response = await fetch('http://localhost:3000/referrals', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -22,6 +22,7 @@ export const createReferral = async (payload: CreateReferralFormProps) => {
                 phone: payload.phone,
             })
         })
+        return response.json()
     } catch (error) {
 
     }
