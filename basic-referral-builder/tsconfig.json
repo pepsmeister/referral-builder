@@ -1,0 +1,23 @@
+{
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "es2022",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "rootDir": ".",
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"],
+      "@assets": ["assets"],
+      "@assets/*": ["assets/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@features": ["features"],
+      "@features/*": ["features/*"]
+    },
+    "types": ["vite/client"]
+  }
+}
