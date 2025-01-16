@@ -160,16 +160,16 @@ export const ReferralForm = () => {
         <div className='mt-6 flex items-center justify-end gap-x-6'>
           <button
             type='button'
-            className='text-sm/6 font-semibold text-gray-900'
+            className='text-sm/6 font-semibold text-gray-900 w-1/2 h-12 border border-gray-300 rounded-md px-3 py-2 shadow-sm hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600'
           >
-            Cancel
+            Upload Avatar
           </button>
           <button
             type='submit'
             disabled={isPending}
-            className={`${isPending ? 'disabled cursor-not-allowed' : ''} rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+            className={`${isPending ? 'disabled cursor-not-allowed' : ''} w-1/2 h-12 rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600`}
           >
-            Save
+            Create Referral
           </button>
         </div>
       </form>
