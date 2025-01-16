@@ -6,6 +6,7 @@ import { TableBody } from './table-body.component'
 interface TableProps<T extends object> {
   data: T[]
   columns: ColumnDef<T>[]
+  error?: string
 }
 
 export const Table = <T extends object>({ data, columns }: TableProps<T>) => {

@@ -1,11 +1,14 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { Divider } from 'src/components/divider/divider.component'
 import {
-  CreateReferraFormProps,
+  CreateReferralFormProps,
   createReferralFormSchema,
 } from './constants/create-referral-form.const'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { InputControlled } from 'src/components/input-controlled/input-controlled.component'
+import { useMutation } from '@tanstack/react-query'
+import { createReferral } from '../referral-table/api/referrals.api'
+import { queryClient } from 'src/config/query-client.config'
 
 export const ReferralForm = () => {
   const formMethods = useForm({
@@ -13,11 +16,30 @@ export const ReferralForm = () => {
     mode: 'all',
     reValidateMode: 'onChange',
   })
+  const { handleSubmit, reset } = formMethods
 
-  const { handleSubmit } = formMethods
+  // Mutations
+  const { mutate: createReferralMutation, isPending } = useMutation({
+    mutationFn: createReferral,
+    onSuccess: async () => {
+      // Invalidate and refetch
+      reset()
+      await queryClient.refetchQueries({
+        queryKey: ['referrals'],
+      })
+    },
+    onError: (error) => {
+      alert('An error occurred: ' + error)
+    },
+  })
 
-  const onSubmit = (data: CreateReferraFormProps) => {
-    alert(JSON.stringify(data, null, 2))
+  const onSubmit = (data: CreateReferralFormProps) => {
+    createReferralMutation({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+    })
   }
 
   return (
@@ -144,7 +166,8 @@ export const ReferralForm = () => {
           </button>
           <button
             type='submit'
-            className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            disabled={isPending}
+            className={`${isPending ? 'disabled cursor-not-allowed' : ''} rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
             Save
           </button>

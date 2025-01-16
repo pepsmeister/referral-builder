@@ -1,8 +1,8 @@
 import { ColumnDef, Row } from '@tanstack/react-table'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
-import { Skeleton } from 'src/components/skeleton/skeleton.component'
 
 export type Person = {
+  id: number
   firstName: string
   lastName: string
   email: string

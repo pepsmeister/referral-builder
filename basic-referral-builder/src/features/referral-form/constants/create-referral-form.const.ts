@@ -13,4 +13,4 @@ export const createReferralFormSchema = yup.object().shape({
     country: yup.string().optional(),
 })
 
-export type CreateReferraFormProps = yup.InferType<typeof createReferralFormSchema>
+export type CreateReferralFormProps = yup.InferType<typeof createReferralFormSchema>
